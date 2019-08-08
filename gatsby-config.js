@@ -34,7 +34,7 @@ module.exports = {
     {
       resolve: '@moltin/gatsby-source-moltin',
       options: {
-        client_id: ToNAyPn9mAX7EXHduVl1dWmkikh80eiO47I2JxroC3
+        client_id: 'ToNAyPn9mAX7EXHduVl1dWmkikh80eiO47I2JxroC3'
       }
     },
     'gatsby-plugin-postcss',
