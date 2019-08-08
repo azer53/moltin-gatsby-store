@@ -5,16 +5,13 @@ import SEO from '../components/SEO'
 import PageTitle from '../components/PageTitle'
 import ProductGrid from '../components/ProductGrid'
 
-function CollectionPage({ data: { category } }) {
+function CollectionPage({ data }) {
+
+  let products = data.allMoltinProduct.edges;
   return (
     <React.Fragment>
-      <SEO
-        title={category.meta_title || category.name}
-        description={category.meta_description || category.description}
-      />
-
-      <PageTitle title={category.name} description={category.description} />
-      <ProductGrid products={category.products} />
+      <PageTitle title='all products' />
+      <ProductGrid products={products} />
     </React.Fragment>
   )
 }
@@ -22,26 +19,23 @@ function CollectionPage({ data: { category } }) {
 export default CollectionPage
 
 export const query = graphql`
-  query($id: String!) {
-    category: moltinCategory(id: { eq: $id }) {
-      id
-      slug
-      name
-      description
-      products {
+query {
+  allMoltinProduct {
+    edges {
+      node {
         id
         name
+        description
         slug
-        mainImage {
-          childImageSharp {
-            fluid(maxWidth: 560) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+        sku
+        price {
+          amount
+          currency
+          includes_tax
         }
         meta {
           display_price {
-            without_tax {
+            with_tax {
               formatted
             }
           }
@@ -49,4 +43,5 @@ export const query = graphql`
       }
     }
   }
+}
 `

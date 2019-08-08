@@ -54,16 +54,6 @@ export const query = graphql`
           name
           slug
           description
-          products {
-            name
-            mainImage {
-              childImageSharp {
-                fluid(maxWidth: 560) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
         }
       }
     }
